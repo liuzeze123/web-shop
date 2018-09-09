@@ -16,6 +16,21 @@ Vue.use(ElementUI)
 axios.defaults.baseURL = 'https://www.liulongbin.top:8888/api/private/v1/'
 // 配置axios
 Vue.prototype.$http = axios
+
+// 为axios的请求拦截器，添加处理函数
+// 今后，只要使用axios发起了ajax请求，必然会先调用 通过拦截器指定的回调函数
+axios.interceptors.request.use(config => {
+  // config形参，就是当前请求的相关参数
+  // console.log(config)
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  // console.log(config)
+  return config
+})
+
+// axios.interceptors.response.use(config=>{
+//   console.log('调用了响应拦截器')
+//   return config
+// })
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
