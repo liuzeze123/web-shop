@@ -11,7 +11,8 @@ const router = new Router({
       path: '/',
       redirect: '/login'
     },
-    { path: '/login', component: login } // 登录界面
+    { path: '/login', component: login }, // 登录界面
+    { path: '/home', redirect: '/welcome' }
   ]
 })
 // 为路由对象，添加beforeEach 导航守卫
@@ -26,4 +27,3 @@ router.beforeEach((to, from, next) => {
 })
 
 export default router
-
